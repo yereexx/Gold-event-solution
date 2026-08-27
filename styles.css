@@ -6,7 +6,6 @@
     --dorado-claro: #f9d976;
     --dorado-oscuro: #b8860b;
     --blanco: #ffffff;
-    --blanco-alpha: rgba(255, 255, 255, 0.92);
     --gris: #888888;
     --gris-claro: #cccccc;
     --rojo: #e74c3c;
@@ -28,8 +27,7 @@ body {
     background-color: var(--negro);
     color: var(--blanco);
     line-height: 1.6;
-    overflow-x: hidden;
-    padding-top: 80px;
+    overflow-x: hidden; /* ¡CLAVE! Bloquea el movimiento lateral en PC */
 }
 
 h1, h2, h3 {
@@ -37,14 +35,13 @@ h1, h2, h3 {
     font-weight: 700;
 }
 
-/* ===== NAVBAR ===== */
+/* ================= NAVBAR (SOLO VISTA PC) ================= */
 .navbar {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    background: var(--blanco-alpha);
-    -webkit-backdrop-filter: blur(10px);
+    background: var(--blanco);
     backdrop-filter: blur(10px);
     border-bottom: 4px solid var(--dorado);
     z-index: 1000;
@@ -54,40 +51,42 @@ h1, h2, h3 {
 .nav-container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 8px 15px; 
+    padding: 15px 20px; /* Tamaño normal de la barra en PC */
     display: flex;
-    /* CAMBIO 1: Pega el logo y el botón a la izquierda */
-    justify-content: flex-start; 
+    justify-content: space-between;
     align-items: center;
-    /* CAMBIO 2: Espacio entre el logo y el botón hamburguesa */
-    gap: 10px; 
 }
 
+/* Logo en PC (Tamaño equilibrado, sin desbordar) */
 .logo {
     display: flex;
     align-items: center;
-    gap: 25px;
+    gap: 20px;
     font-size: 1.8rem; 
     font-weight: 700;
     color: var(--negro);
     text-decoration: none;
     font-family: 'Poppins', sans-serif;
+    max-width: 100%;
+    overflow: hidden;
 }
 
 .logo-container {
     background-color: transparent;
     width: auto;
-    height: 80px;
+    height: 70px; /* Tamaño de imagen moderado para PC */
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 0;
     box-shadow: none;
-    margin-right: 10px; 
+    margin-right: 5px;
+    flex-shrink: 0;
 }
 
 .logo-container img {
-    width: 100%;
+    width: auto;
+    max-width: 100%;
     height: 100%;
     object-fit: contain;
 }
@@ -96,6 +95,7 @@ h1, h2, h3 {
     color: var(--negro);
 }
 
+/* Botón Admin en PC */
 .btn-admin-nav {
     background: transparent;
     border: 1px solid var(--negro);
@@ -104,8 +104,8 @@ h1, h2, h3 {
     border-radius: 25px;
     cursor: pointer;
     font-family: 'Poppins', sans-serif;
-    font-size: 0.85rem;
-    transition: all 0.3s ease;
+    font-size: 0.9rem;
+    transition: all 0.3s;
 }
 
 .btn-admin-nav:hover {
@@ -113,10 +113,11 @@ h1, h2, h3 {
     color: var(--blanco);
 }
 
+/* Menú en PC */
 .nav-menu {
     display: flex;
     list-style: none;
-    gap: 20px;
+    gap: 25px;
     align-items: center;
 }
 
@@ -125,8 +126,8 @@ h1, h2, h3 {
     text-decoration: none;
     font-weight: 500;
     font-family: 'Poppins', sans-serif;
-    font-size: 0.9rem;
-    transition: color 0.3s ease;
+    font-size: 1rem;
+    transition: color 0.3s;
     position: relative;
 }
 
@@ -142,22 +143,19 @@ h1, h2, h3 {
     width: 0;
     height: 2px;
     background: var(--dorado);
-    transition: width 0.3s ease;
+    transition: width 0.3s;
 }
 
 .nav-menu a:hover::after {
     width: 100%;
 }
 
-/* Estilo del botón hamburguesa en escritorio (oculto) */
+/* La hamburguesa NO se ve en PC */
 .hamburger {
     display: none;
-    font-size: 2rem;
-    cursor: pointer;
-    color: var(--negro);
 }
 
-/* ===== HERO ===== */
+/* ================= HERO ================= */
 .hero {
     min-height: 100vh;
     display: flex;
@@ -180,8 +178,8 @@ h1, h2, h3 {
     margin-bottom: 20px;
     background: linear-gradient(135deg, var(--dorado-claro), var(--dorado), var(--dorado-oscuro));
     -webkit-background-clip: text;
-    background-clip: text;
     -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
 .hero p {
@@ -212,7 +210,7 @@ h1, h2, h3 {
     50% { transform: scale(1.2); opacity: 0.8; }
 }
 
-/* ===== BOTONES ===== */
+/* ================= BOTONES ================= */
 .btn {
     padding: 12px 30px;
     border-radius: 30px;
@@ -221,7 +219,7 @@ h1, h2, h3 {
     cursor: pointer;
     border: none;
     font-family: 'Poppins', sans-serif;
-    transition: all 0.3s ease;
+    transition: all 0.3s;
     display: inline-block;
     font-size: 0.95rem;
 }
@@ -255,7 +253,7 @@ h1, h2, h3 {
     font-size: 0.85rem;
 }
 
-/* ===== SECCIONES ===== */
+/* ================= SECCIONES ================= */
 .section {
     padding: 80px 20px;
     max-width: 1200px;
@@ -292,7 +290,7 @@ h1, h2, h3 {
     font-weight: 300;
 }
 
-/* ===== BUSCAR ===== */
+/* ================= BUSCAR ================= */
 .search-container {
     max-width: 600px;
     margin: 0 auto;
@@ -313,7 +311,7 @@ h1, h2, h3 {
     color: var(--blanco);
     font-size: 1rem;
     font-family: 'Poppins', sans-serif;
-    transition: all 0.3s ease;
+    transition: all 0.3s;
 }
 
 .search-form input:focus {
@@ -328,7 +326,7 @@ h1, h2, h3 {
     text-align: center;
     font-size: 1.1rem;
     min-height: 60px;
-    transition: all 0.3s ease;
+    transition: all 0.3s;
 }
 
 .search-result.success {
@@ -349,7 +347,7 @@ h1, h2, h3 {
     color: var(--gris);
 }
 
-/* ===== OPINIONES ===== */
+/* ================= OPINIONES ================= */
 .opiniones-container {
     display: grid;
     grid-template-columns: 1fr 2fr;
@@ -381,7 +379,7 @@ h1, h2, h3 {
     font-size: 2.5rem;
     cursor: pointer;
     color: var(--gris);
-    transition: all 0.2s ease;
+    transition: all 0.2s;
     user-select: none;
 }
 
@@ -408,7 +406,7 @@ h1, h2, h3 {
     font-family: 'Poppins', sans-serif;
     resize: vertical;
     margin-bottom: 15px;
-    transition: border-color 0.3s ease;
+    transition: border-color 0.3s;
 }
 
 .opinion-form-card textarea:focus {
@@ -455,7 +453,7 @@ h1, h2, h3 {
     text-align: right;
 }
 
-/* ===== CONTACTO ===== */
+/* ================= CONTACTO ================= */
 .contact-container {
     max-width: 600px;
     margin: 0 auto;
@@ -489,7 +487,7 @@ h1, h2, h3 {
     background: rgba(255, 255, 255, 0.05);
     color: var(--blanco);
     font-family: 'Poppins', sans-serif;
-    transition: border-color 0.3s ease;
+    transition: border-color 0.3s;
 }
 
 .form-group input:focus,
@@ -499,7 +497,7 @@ h1, h2, h3 {
     box-shadow: 0 0 10px rgba(212, 175, 55, 0.2);
 }
 
-/* ===== FOOTER ===== */
+/* ================= FOOTER ================= */
 .footer {
     background: var(--negro-suave);
     border-top: 1px solid rgba(212, 175, 55, 0.3);
@@ -508,7 +506,7 @@ h1, h2, h3 {
     color: var(--gris);
 }
 
-/* ===== MODAL ADMIN ===== */
+/* ================= MODAL ADMIN ================= */
 .modal {
     display: none;
     position: fixed;
@@ -546,7 +544,7 @@ h1, h2, h3 {
     font-size: 2rem;
     color: var(--gris);
     cursor: pointer;
-    transition: color 0.3s ease;
+    transition: color 0.3s;
 }
 
 .close-modal:hover {
@@ -585,7 +583,7 @@ h1, h2, h3 {
     margin-top: 10px;
 }
 
-/* ===== ADMIN PANEL ===== */
+/* ================= ADMIN PANEL ================= */
 .admin-panel {
     margin-top: 20px;
 }
@@ -605,7 +603,7 @@ h1, h2, h3 {
     border-radius: 20px;
     cursor: pointer;
     font-family: 'Poppins', sans-serif;
-    transition: all 0.3s ease;
+    transition: all 0.3s;
 }
 
 .tab-btn.active,
@@ -686,7 +684,7 @@ h1, h2, h3 {
     border-radius: 5px;
     cursor: pointer;
     font-family: 'Poppins', sans-serif;
-    transition: all 0.3s ease;
+    transition: all 0.3s;
 }
 
 .btn-delete:hover {
@@ -694,79 +692,68 @@ h1, h2, h3 {
     transform: scale(1.05);
 }
 
+/* Botón para cerrar sesión */
 #btnLogout {
     margin-left: auto;
     display: inline-block;
 }
 
-/* ===== RESPONSIVE (CELULAR / IPHONE) ===== */
+/* ================= SOLO CELULAR (NO AFECTA PC) ================= */
 @media (max-width: 768px) {
     body {
-        padding-top: 65px;
+        padding-top: 65px; /* Espacio para la barra compacta */
     }
 
     .nav-container {
-        padding: 5px 12px;
-        width: 100%;
+        padding: 5px 15px;
+        justify-content: space-between;
+        gap: 10px;
     }
 
     .logo {
-        font-size: clamp(0.75rem, 3.2vw, 0.95rem);
-        gap: 8px;
+        font-size: 0.95rem;
+        gap: 10px;
         white-space: nowrap;
-        overflow: visible;
-        max-width: 80%;
+        overflow: hidden;
     }
 
     .logo-container {
-        height: 40px;
-        width: 40px;
+        height: 45px;
         margin-right: 0;
         flex-shrink: 0;
     }
 
-    /* El botón hamburguesa ahora se muestra en móviles */
+    /* Aquí es donde aparece la hamburguesa */
     .hamburger {
         display: block;
         flex-shrink: 0;
-        /* Estilo de cajita como en tu foto */
-        border: 2px solid var(--negro);
-        border-radius: 5px;
-        padding: 2px 8px;
-        line-height: 1;
-        background: transparent;
+        font-size: 1.8rem;
+        cursor: pointer;
+        color: var(--negro);
     }
 
+    /* Menú desplegable en celular */
     .nav-menu {
-        position: absolute;
-        top: 100%;
-        left: -100%; /* Oculto fuera de la pantalla a la izquierda */
+        position: fixed;
+        top: 60px;
+        left: -100%;
         width: 100%;
         background: var(--blanco);
         flex-direction: column;
         padding: 20px;
         gap: 15px;
-        transition: left 0.3s ease; /* Animación suave */
+        transition: left 0.3s ease;
         border-bottom: 1px solid var(--dorado);
         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        min-width: 100%;
     }
     
-    /* ¡CLAVE! Esta regla hace que aparezca cuando el JS agrega la clase .active */
     .nav-menu.active {
-        left: 0; 
+        left: 0;
     }
 
     .nav-menu a {
         font-size: 1.1rem;
-        color: var(--negro); /* Texto negro sobre fondo blanco */
-    }
-    
-    /* Ajuste del botón de admin en el menú móvil */
-    .btn-admin-nav {
-        color: var(--negro);
-        border-color: var(--negro);
-        width: 100%;
-        text-align: center;
     }
     
     .hero h1 {
@@ -785,12 +772,17 @@ h1, h2, h3 {
         padding: 25px;
     }
 
+    /* Botón de búsqueda debajo del input en celular */
     .search-form {
         flex-direction: column;
     }
 
-    .search-form input,
+    .search-form input {
+        width: 100%;
+    }
+
     .search-form .btn {
         width: 100%;
+        text-align: center;
     }
 }
