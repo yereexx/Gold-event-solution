@@ -43,8 +43,7 @@ h1, h2, h3 {
     width: 100%;
     background: var(--blanco);
     backdrop-filter: blur(10px);
-    /* FRANJA DORADA INFERIOR */
-    border-bottom: 4px solid var(--dorado); 
+    border-bottom: 4px solid var(--dorado);
     z-index: 1000;
     transition: all 0.3s ease;
 }
@@ -52,57 +51,58 @@ h1, h2, h3 {
 .nav-container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 15px 20px;
+    /* Barra más baja en escritorio (de 15px a 8px) */
+    padding: 8px 15px; 
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-/* Logo en negro y con la misma tipografía que el menú (Poppins) */
+/* Logo en escritorio (Imagen GRANDE, texto moderado) */
 .logo {
     display: flex;
-    align-items: center; /* Centra la imagen y el texto verticalmente */
-    gap: 45px; /* AUMENTADO: Mucha más separación entre la imagen y las letras */
-    font-size: 2.2rem; 
+    align-items: center;
+    gap: 25px; /* Separación generosa */
+    font-size: 1.8rem; 
     font-weight: 700;
-    color: var(--negro); 
+    color: var(--negro);
     text-decoration: none;
     font-family: 'Poppins', sans-serif;
 }
 
-/* Estilos para la imagen del logo (AHORA MUCHO MÁS GRANDE) */
+/* La imagen NO se minimiza en escritorio */
 .logo-container {
     background-color: transparent;
     width: auto;
-    height: 110px; /* AUMENTADO de 65px a 110px */
+    height: 110px; /* Se mantiene GRANDE */
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 0;
     box-shadow: none;
-    margin-right: 15px; /* Separación extra para que no se pegue al texto */
+    margin-right: 10px; 
 }
 
 .logo-container img {
     width: 100%;
     height: 100%;
-    object-fit: contain; /* Mantiene la proporción de la imagen */
+    object-fit: contain;
 }
 
 .logo span {
     color: var(--negro);
 }
 
-/* Botón Admin con la misma tipografía del menú */
+/* Botón Admin compacto */
 .btn-admin-nav {
     background: transparent;
     border: 1px solid var(--negro);
     color: var(--negro);
-    padding: 8px 18px;
+    padding: 6px 14px;
     border-radius: 25px;
     cursor: pointer;
     font-family: 'Poppins', sans-serif;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     transition: all 0.3s;
 }
 
@@ -114,17 +114,17 @@ h1, h2, h3 {
 .nav-menu {
     display: flex;
     list-style: none;
-    gap: 30px;
+    gap: 20px;
     align-items: center;
 }
 
-/* Enlaces del menú con su tipografía original (Poppins) y color negro */
+/* Enlaces más compactos */
 .nav-menu a {
     color: var(--negro);
     text-decoration: none;
     font-weight: 500;
     font-family: 'Poppins', sans-serif;
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     transition: color 0.3s;
     position: relative;
 }
@@ -705,17 +705,34 @@ h1, h2, h3 {
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
+    /* Barra compacta en celular */
+    .nav-container {
+        padding: 5px 15px; 
+    }
+
+    /* El logo en celular: texto reducido pero imagen GRANDE */
+    .logo {
+        font-size: 1rem; /* Texto más pequeño para que no se desborde */
+        gap: 15px;
+    }
+
+    .logo-container {
+        height: 80px; /* Imagen GRANDE en celular (no minimizada) */
+        margin-right: 5px;
+    }
+
     .nav-menu {
         position: fixed;
-        top: 60px;
+        top: 55px; /* Se ajusta a la altura de la barra compacta */
         left: -100%;
         width: 100%;
         background: var(--blanco);
         flex-direction: column;
         padding: 20px;
-        gap: 20px;
+        gap: 15px;
         transition: left 0.3s;
         border-bottom: 1px solid var(--dorado);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     }
     
     .nav-menu.active {
@@ -724,6 +741,11 @@ h1, h2, h3 {
     
     .hamburger {
         display: block;
+        font-size: 2rem; /* Hamburguesa un poco más grande para fácil acceso */
+    }
+
+    .nav-menu a {
+        font-size: 1.1rem; /* Cómodo de leer en celular */
     }
     
     .hero h1 {
